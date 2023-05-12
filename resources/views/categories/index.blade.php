@@ -1,16 +1,21 @@
 @extends('layouts.app')
+
 @section('css')
     <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
-
-
 @endsection
+
 @section('content')
 
     <main class="my-5 d-flex">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{ route('categories.create') }}" class="btn btn-primary text-black">Crear Categoría</a>
+                </div>
+            </div>
             <div class="row text-center">
                 <div class="col-12">
-                    <table id="articlesTable" class="table table-responsive table-hover">
+                    <table id="categoriesTable" class="table table-responsive table-hover">
                         <thead>
                         <tr>
                             <th data-column="id">
@@ -19,17 +24,12 @@
                             <th data-column="name">
                                 Nombre
                             </th>
-                            <th data-column="subcategory">
-                                Subcategoría
-                            </th>
+
                             <th data-column="available">
                                 Disponible
                             </th>
                             <th data-column="visible">
                                 Visible
-                            </th>
-                            <th data-column="status">
-                                Estado
                             </th>
                             <th>
                                 Acciones
@@ -37,15 +37,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @isset($articles)
-                            @foreach ($articles as $article)
+                        @isset($categories)
+                            @foreach ($categories as $category)
                                 <tr>
-                                    <td>{{ $article->id }}</td>
-                                    <td>{{ $article->name }}</td>
-                                    <td>{{ $article->subcategory ? $article->subcategory->name : 'Sin subcategoría' }}</td>
-                                    <td>{{ $article->available }}</td>
-                                    <td>{{ $article->visible }}</td>
-                                    <td>{{ $article->status }}</td>
+                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->available}}</td>
+                                    <td>{{ $category->visible}}</td>
                                     <td>
                                         <button type="button" class="btn btn-link text-danger btn-delete"><i class="fas fa-trash-alt"></i></button>
                                     </td>
@@ -54,11 +52,6 @@
                         @endisset
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="{{ route('articles.create') }}" class="btn btn-primary text-black m-3">Crear Artículo</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -66,6 +59,6 @@
 @endsection
 @section('js')
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" type="application/javascript"></script>
-    <script src="{{ asset('storage/js/articles.js') }}"></script>
-
+    <script src="{{ asset('storage/js/categories.js') }}"></script>
 @endsection
+

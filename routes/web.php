@@ -27,8 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//
+//$this->middleware('permission:article-list|article-create|article-edit|article-delete', ['only' => ['index','show']]);
+//$this->middleware('permission:article-create', ['only' => ['create','store']]);
+//$this->middleware('permission:article-edit', ['only' => ['update']]);
+//$this->middleware('permission:article-delete', ['only' => ['destroy']]);
 
-require __DIR__.'/auth.php';
 Route::group(['prefix' => 'articulos'], function(){
     Route::get('/', [\App\Http\Controllers\Articles\ArticleController::class, 'index'])->name('articles.index');
     Route::get('/crearArticulo', [\App\Http\Controllers\Articles\ArticleController::class, 'create'])->name('articles.create');
@@ -55,6 +59,8 @@ Route::group(['prefix' => 'subcategorias'], function(){
     Route::delete('/delete/{subcategoria}', [\App\Http\Controllers\Subcategories\SubcategoryController::class, 'destroy'])->name('subcategories.destroy');
 });
 
+require __DIR__.'/auth.php';
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -62,9 +68,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
-});
 
-Auth::routes();
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
