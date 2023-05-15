@@ -8,11 +8,6 @@
 
     <main class="my-5 d-flex">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <a href="{{ route('subcategories.create') }}" class="btn btn-primary text-black">Crear Subcategoría</a>
-                </div>
-            </div>
             <div class="row text-center">
                 <div class="col-12">
                     <table id="subcategoriesTable" class="table table-responsive table-hover">
@@ -56,6 +51,11 @@
                         @endisset
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{{ route('subcategories.create') }}" class="btn btn-primary text-black">Crear Subcategoría</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

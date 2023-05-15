@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,12 +66,7 @@ require __DIR__.'/auth.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-
-});
+Route::group(['prefix' => 'roles'], function(){
+    Route::get('/', 'RoleController@index')->name('roles.index');});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

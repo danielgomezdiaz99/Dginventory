@@ -20,6 +20,7 @@
     @yield('css')
 </head>
 <body>
+
 @include('templates.header')
         <main class="py-4">
             @yield('content')
