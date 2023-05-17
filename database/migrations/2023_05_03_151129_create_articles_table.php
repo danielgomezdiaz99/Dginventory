@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('subcategory_id');
+            $table->string('photo_path')->nullable();
             $table->boolean('available')->default(true);
             $table->boolean('visible')->default(true);
             $table->string('status')->nullable();

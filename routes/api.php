@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Articles\ArticleController;
+use App\Http\Controllers\API\ArticleControllerApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +14,11 @@ use App\Http\Controllers\Articles\ArticleController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/articles', [ArticleController::class, 'index']);
-Route::post('/articles', [ArticleController::class, 'store']);
-Route::put('/articles/{id}', [ArticleController::class, 'update']);
-Route::delete('/articles/{id}', [ArticleController::class, 'destroy']);
+Route::get('/articles', [ArticleControllerApi::class, 'index']);
+Route::post('/articles', [ArticleControllerApi::class, 'store']);
+Route::put('/articles/{id}', [ArticleControllerApi::class, 'update']);
+Route::delete('/articles/{id}', [ArticleControllerApi::class, 'destroy']);
+Route::get('/articles/{nombre}', [ArticleControllerApi::class, 'searchByNombre']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

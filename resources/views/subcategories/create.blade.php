@@ -6,7 +6,7 @@
 
             @csrf
             <div class="mb-3">
-                <label for="nombreSubcategoria" class="form-label">Nombre de la categoría</label>
+                <label for="nombreSubcategoria" class="form-label">Nombre de la Subcategoría</label>
                 <input type="text" class="form-control" id="nombreSubcategoria" name="nombreSubcategoria" placeholder="">
                 @if ($errors->has('nombreSubcategoria'))
                     <span class="text-danger">{{ $errors->first('nombreSubcategoria') }}</span>

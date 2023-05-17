@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="my-5">
-        <form action="{{ route('articles.store') }}" method="POST">
+        <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="nombreArticulo" class="form-label">Nombre del artículo</label>
@@ -39,6 +39,10 @@
                 <label for="estado" class="form-label">Estado</label>
                 <textarea class="form-control" id="estado" name="estado" rows="3"></textarea>
             </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="imagen" name="imagen">
+            </div>
             <button type="submit" class="btn btn-primary text-black">Guardar</button>
         </form>
     </div>
@@ -47,4 +51,5 @@
 @section('js')
     <script src="{{ asset('storage/js/articles.js') }}"></script>
 @endsection
+
 

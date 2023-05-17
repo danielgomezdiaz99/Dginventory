@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -26,31 +28,34 @@ class ArticleController extends Controller
     }
     public function store(Request $request)
     {
-
-        try{
-
+        try {
             $rules = [
                 'nombreArticulo' => 'required|string|min:3|max:255',
                 'subcategoria' => 'required',
+                'imagen' => 'required|image'//|max:2048' Validación de imagen (requerida y con tamaño máximo)
             ];
+
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                return redirect()->route('articles.create')
-                    ->withErrors($validator)
-                    ->withInput();
+                return response()->json(['success' => false, 'errors' => $validator->errors()]);
             }
+
+            // Subir y almacenar la imagen
+            $imagePath = $request->file('imagen')->store('articles', 'public');
+            // El método store() guarda la imagen en la carpeta 'articles' dentro de la carpeta 'public' (puedes cambiarlo según tus necesidades)
 
             $article = new Article();
             $article->name = $request->input('nombreArticulo');
-            $article->subcategory_id = $request->subcategoria;
+            $article->subcategory_id = $request->input('subcategoria');
             $article->available = boolval($request->input('available'));
             $article->visible = boolval($request->input('visible'));
             $article->status = $request->input('estado');
+            $article->image = $imagePath; // Guardar la ruta de la imagen en la base de datos
             $article->save();
-            return redirect()->route('articles.index');
-        } catch (\Exception $e){
 
-            return back()->with('error', $e->getMessage());
+            return response()->json(['success' => true, 'article' => $article]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 

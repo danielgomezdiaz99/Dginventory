@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Articles;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
 
-class ArticleController extends Controller
+class ArticleControllerApi extends Controller
 {
     public function index()
     {
@@ -33,7 +33,7 @@ class ArticleController extends Controller
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                return response()->json(['success' => true]);
+                return response()->json(['success' => false, 'errors' => $validator->errors()]);
             }
 
             $article = new Article();
@@ -43,7 +43,7 @@ class ArticleController extends Controller
             $article->visible = boolval($request->input('visible'));
             $article->status = $request->input('estado');
             $article->save();
-            return redirect()->route('articles.index');
+            return response()->json(['success' => true, 'article' => $article]);
         } catch (\Exception $e){
 
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
@@ -68,6 +68,7 @@ class ArticleController extends Controller
 
         try {
             $article = Article::findOrFail($id);
+            $article->delete();
             return response()->json(['success' => true]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException | \Exception $e) {
             return $e->getMessage();
@@ -75,4 +76,15 @@ class ArticleController extends Controller
 
         return response()->json(['success' => false, 'error' => $e->getMessage()]);
     }
+    public function searchByNombre($nombre)
+    {
+        $articles = Article::where('name', 'like', '%' . $nombre . '%')->get();
+
+        if ($articles->isEmpty()) {
+            return response()->json(['success' => false, 'message' => 'No articles found containing the given name.']);
+        }
+
+        return response()->json(['success' => true, 'articles' => $articles]);
+    }
+
 }
