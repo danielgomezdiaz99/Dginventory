@@ -15,13 +15,6 @@ class ArticleControllerApi extends Controller
         $articles = Article::all();
         return response()->json(['articles' => $articles]);
     }
-
-    public function create()
-    {
-        $categories = \App\Models\Category::all();
-        return response()->json(['categories' => $categories]);
-    }
-
     public function store(Request $request)
     {
 
