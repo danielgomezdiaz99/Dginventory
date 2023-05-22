@@ -13,7 +13,6 @@ class Article extends Model
     // Artículo	Subfamilia	RAT-110	Ubicación	Asignación	Fecha entrega	Fecha revisión	Disponible	Estado	Estado	OBSERVACIONES
 
     protected $fillable = [
-        'id',
         'name',
         'subcategory_id',
         'photo_path',
