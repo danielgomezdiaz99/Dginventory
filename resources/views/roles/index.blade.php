@@ -7,6 +7,7 @@
                 <h2>Role Management</h2>
             </div>
             <div class="pull-right">
+{{--                if(!empty(Auth::user()->roles->first()->permissions->where('name', 'role-create')->get())) --}}
                 @can('role-create')
                     <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role </a>
                 @endcan

@@ -46,7 +46,6 @@
             <button type="submit" class="btn btn-primary text-black">Guardar</button>
         </form>
     </div>
-
 @endsection
 @section('js')
     <script src="{{ asset('storage/js/articles.js') }}"></script>

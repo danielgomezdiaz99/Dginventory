@@ -1,4 +1,4 @@
-<footer class="bg-light py-3 fixed-bottom">
+<footer class="bg-light py-3 sticky-footer">
     <div class="container text-center">
         <p>Pampling &copy; 2023</p>
         <p>Daniel Gómez Díaz</p>

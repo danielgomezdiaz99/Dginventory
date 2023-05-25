@@ -14,6 +14,7 @@ class Article extends Model
 
     protected $fillable = [
         'name',
+        'stock',
         'subcategory_id',
         'photo_path',
         'available',
@@ -23,5 +24,9 @@ class Article extends Model
 
     public function subcategory(){
         return $this->belongsTo(self::$subcategoryModel);
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_article', 'article_id', 'order_id');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -20,7 +21,9 @@ use App\Http\Controllers\RoleController;
 Route::get('/', function () {
     return view('welcome');
 });
+require __DIR__.'/auth.php';
 
+Auth::routes();
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -62,11 +65,11 @@ Route::group(['prefix' => 'subcategorias'], function(){
     Route::delete('/delete/{subcategoria}', [\App\Http\Controllers\Subcategories\SubcategoryController::class, 'destroy'])->name('subcategories.destroy');
 });
 
-require __DIR__.'/auth.php';
 
-Auth::routes();
 
-Route::group(['prefix' => 'roles'], function(){
-    Route::get('/', 'RoleController@index')->name('roles.index');});
+//Route::middleware(['can:role-list'])->group(function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+//});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

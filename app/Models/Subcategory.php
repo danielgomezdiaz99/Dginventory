@@ -9,7 +9,6 @@ class Subcategory extends Model
     use SoftDeletes;
     protected static $articleModel='App\Models\Articles';
     protected $fillable = [
-        'id',
         'name',
         'available',
         'visible',
