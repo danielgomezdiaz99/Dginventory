@@ -9,8 +9,7 @@ class Article extends Model
 {
     use SoftDeletes;
     protected static $subcategoryModel = 'App\Models\Subcategory';
-
-    // Artículo	Subfamilia	RAT-110	Ubicación	Asignación	Fecha entrega	Fecha revisión	Disponible	Estado	Estado	OBSERVACIONES
+    protected static $orderDetail = 'App\Models\OrderDetail';
 
     protected $fillable = [
         'name',
@@ -25,8 +24,10 @@ class Article extends Model
     public function subcategory(){
         return $this->belongsTo(self::$subcategoryModel);
     }
-    public function orders()
+
+    public function OrderDetail()
     {
-        return $this->belongsToMany(Order::class, 'order_article', 'article_id', 'order_id');
+        return $this->hasMany(self::$orderDetail);
     }
+
 }

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('stock');
             $table->integer('subcategory_id');
-            $table->string('photo_path')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('available')->default(true);
             $table->boolean('visible')->default(true);
             $table->string('status')->nullable();

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Articles;
+namespace App\Http\Controllers\Orders;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
-class ArticleController extends Controller
+class OrderController extends Controller
 {
         function __construct()
     {
@@ -17,23 +17,22 @@ class ArticleController extends Controller
     }
     public function index()
     {
-        $articles = Article::all();
-        return view('articles.index', ['articles' => $articles]);
+        $orders = Order::all();
+        return view('orders.index', ['orders', $orders]);
     }
 
     public function create()
     {
-        $categories = \App\Models\Category::all();
-        return view('articles.create', ['categories' => $categories]);
+        $orders = Order::all();
+        return view('orders.create');
     }
+
     public function store(Request $request)
     {
 
         try {
             $rules = [
-                'nombreArticulo' => 'required|string|min:3|max:255',
-                'subcategoria' => 'required',
-                'imagen' => 'required|image',//|max:2048' Validación de imagen (requerida y con tamaño máximo)
+                'status' => 'required|string|min:3|max:255',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -43,18 +42,10 @@ class ArticleController extends Controller
                     ->withInput();
             }
 
-            // Subir y almacenar la imagen
-            $imagePath = $request->file('imagen')->store('articles','public');
-            // El método store() guarda la imagen en la carpeta 'articles' dentro de la carpeta 'public'
 
-            $article = new Article();
-            $article->name = $request->input('nombreArticulo');
-            $article->subcategory_id = $request->input('subcategoria');
-            $article->available = boolval($request->input('available'));
-            $article->visible = boolval($request->input('visible'));
-            $article->status = $request->input('estado');
-            $article->image = $imagePath; // Guardar la ruta de la imagen en la base de datos
-            $article->saveOrFail();
+            $order = new Order();
+            $order->status = $request->input('nombreArticulo');
+            $order->saveOrFail();
             return redirect()->route('articles.index');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());}

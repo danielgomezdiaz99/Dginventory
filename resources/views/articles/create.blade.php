@@ -6,8 +6,14 @@
             @csrf
             <div class="mb-3">
                 <label for="nombreArticulo" class="form-label">Nombre del artículo</label>
-                <input type="text" class="form-control" id="nombreArticulo" name="nombreArticulo" placeholder="">
+                <input type="text" class="form-control" id="nombreArticulo" name="nombreArticulo">
             </div>
+
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="text" class="form-control" id="stock" name="stock" placeholder="0">
+            </div>
+
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
                 <select class="form-select" id="categoria" name="categoria">

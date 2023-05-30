@@ -65,7 +65,10 @@ Route::group(['prefix' => 'subcategorias'], function(){
     Route::delete('/delete/{subcategoria}', [\App\Http\Controllers\Subcategories\SubcategoryController::class, 'destroy'])->name('subcategories.destroy');
 });
 
-
+Route::group(['prefix' => 'pedidos'], function(){
+    Route::get('/', [\App\Http\Controllers\Orders\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/catalogo', [\App\Http\Controllers\Orders\OrderController::class, 'create'])->name('orders.create');
+});
 
 //Route::middleware(['can:role-list'])->group(function () {
     Route::resource('roles', RoleController::class);

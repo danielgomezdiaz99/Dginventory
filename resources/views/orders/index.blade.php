@@ -5,29 +5,17 @@
     <div class="container-fluid">
         <div class="row text-center">
             <div class="col-12">
-                <table id="articlesTable" class="table table-responsive table-hover">
+                <table id="ordersTable" class="table table-responsive table-hover">
                     <thead>
-                        <tr>
+                    <tr>
                         <th data-column="id">
-                            ID
-                        </th>
-                        <th data-column="name">
-                            Nombre
-                        </th>
-                        <th data-column="subcategory">
-                            Subcategoría
-                        </th>
-                        <th>
-                            Imagen
-                        </th>
-                        <th data-column="available">
-                            Disponible
-                        </th>
-                        <th data-column="visible">
-                            Visible
+                            Referencia
                         </th>
                         <th data-column="status">
                             Estado
+                        </th>
+                        <th data-column="create_at">
+                            Fecha
                         </th>
                         <th>
                             Acciones
@@ -35,19 +23,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @isset($articles)
-                        @foreach ($articles as $article)
+                    @isset($orders)
+                        @foreach ($orders as $order)
                             <tr>
-                                <td>{{ $article->id }}</td>
-                                <td>{{ $article->name }}</td>
-                                <td>{{ $article->subcategory ? $article->subcategory->name : 'Sin subcategoría' }}</td>
-                                <td>
-                                    <img src="{{ asset('storage/' . $article->image) }}" alt="Imagen del artículo"
-                                         class="img-fluid rounded" style="width: 50px; height: 50px;">
-                                </td>
-                                <td>{{ $article->available }}</td>
-                                <td>{{ $article->visible }}</td>
-                                <td>{{ $article->status }}</td>
+                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->status }}</td>
+                                <td>{{ $order->create_At }}</td>
                                 <td>
                                     <button type="button" class="btn btn-link text-danger btn-delete"><i
                                             class="fas fa-trash-alt"></i></button>
@@ -57,12 +38,7 @@
                     @endisset
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-12">
-                        <a href="{{ route('articles.create') }}" class="btn btn-primary text-black m-3">Crear
-                            Artículo</a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

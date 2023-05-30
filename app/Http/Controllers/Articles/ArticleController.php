@@ -34,6 +34,7 @@ class ArticleController extends Controller
                 'nombreArticulo' => 'required|string|min:3|max:255',
                 'subcategoria' => 'required',
                 'imagen' => 'required|image',//|max:2048' Validación de imagen (requerida y con tamaño máximo)
+                'stock'=>'required|integer',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -49,6 +50,7 @@ class ArticleController extends Controller
 
             $article = new Article();
             $article->name = $request->input('nombreArticulo');
+            $article->stock = $request->input('stock');
             $article->subcategory_id = $request->input('subcategoria');
             $article->available = boolval($request->input('available'));
             $article->visible = boolval($request->input('visible'));

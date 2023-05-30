@@ -6,9 +6,8 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
-            <ul class="navbar-nav w-100
-            mx-auto">
-                <li class="nav-item flex-fill mx-2"">
+            <ul class="navbar-nav w-100 mx-auto">
+                <li class="nav-item flex-fill mx-2">
                     <a class="navbar-brand" href="#">
                         <img style="width:50px;height:auto" src="{{ asset('storage/logo.png') }}" class="img-responsive">
                     </a>
@@ -22,6 +21,15 @@
                 <li class="nav-item flex-fill mx-2">
                     <a class="nav-link {{ request()->routeIs('subcategories.index') ? 'active' : '' }}" href="{{ route('subcategories.index') }}">Subcategorías</a>
                 </li>
+                <li class="nav-item dropdown flex-fill mx-2">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pedidos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('orders.create') }}">Realizar Pedido</a></li>
+                        <li><a class="dropdown-item" href="{{ route('orders.index') }}">Ver mis pedidos</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item flex-fill mx-2">
                     <a class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}" href="{{ route('roles.index') }}">Roles</a>
                 </li>
@@ -29,3 +37,4 @@
         </div>
     </div>
 </nav>
+

@@ -14,6 +14,9 @@
                         <th data-column="name">
                             Nombre
                         </th>
+                            <th data-column="stock">
+                                Stock
+                            </th>
                         <th data-column="subcategory">
                             Subcategoría
                         </th>
@@ -40,6 +43,7 @@
                             <tr>
                                 <td>{{ $article->id }}</td>
                                 <td>{{ $article->name }}</td>
+                                <td>{{ $article->stock }}</td>
                                 <td>{{ $article->subcategory ? $article->subcategory->name : 'Sin subcategoría' }}</td>
                                 <td>
                                     <img src="{{ asset('storage/' . $article->image) }}" alt="Imagen del artículo"

@@ -12,8 +12,24 @@ class ArticleControllerApi extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
-        return response()->json(['articles' => $articles]);
+        $articles = Article::with('subcategory.category')->get();
+
+        $articlesData = $articles->map(function ($article) {
+            return [
+                'id'=>$article->id,
+                'name' => $article->name,
+                'stock'=>$article->stock,
+                'image'=>$article->image,
+                'category' => $article->subcategory->category->name,
+                'subcategory' => $article->subcategory->name,
+                'available'=>$article->available,
+                'visible'=>$article->visible,
+                'status'=>$article->status,
+
+            ];
+        });
+
+        return response()->json(['articles' => $articlesData]);
     }
     public function store(Request $request)
     {
@@ -23,6 +39,7 @@ class ArticleControllerApi extends Controller
             $rules = [
                 'nombreArticulo' => 'required|string|min:3|max:255',
                 'subcategoria' => 'required',
+
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {

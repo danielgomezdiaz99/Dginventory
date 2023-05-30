@@ -9,13 +9,16 @@ class Order extends Model
 {
     use SoftDeletes;
     protected static $userModel = 'App\Models\User';
+    protected static $orderDetail = 'App\Models\OrderDetail';
 
     protected $fillable = [
         'status',
+        'user_id',
+
     ];
-    public function articles()
+    public function OrderDetail()
     {
-        return $this->belongsToMany(Article::class, 'order_article', 'order_id', 'article_id');
+        return $this->hasMany(self::$orderDetail);
     }
     public function user(){
         return $this->belongsTo(self::$userModel);
