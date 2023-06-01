@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CategoryControllerApi;
 use App\Http\Controllers\API\ArticleControllerApi;
 use App\Http\Controllers\API\SubcategoryControllerApi;
+use App\Http\Controllers\API\UserControlerApi;
+use App\Http\Controllers\API\OrderApi;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,7 @@ Route::post('/subcategories', [SubcategoryControllerApi::class, 'store']);
 Route::put('/subcategories/{id}', [SubcategoryControllerApi::class, 'update']);
 Route::delete('/subcategories/{id}', [SubcategoryControllerApi::class, 'destroy']);
 
+Route::post('/saveOrderDetail', [OrderApi::class, 'saveOrderDetail']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

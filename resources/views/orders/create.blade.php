@@ -3,6 +3,8 @@
 @endsection
 @section('content')
     <div class="container">
+
+        <input id="userLoggediD" type="hidden" value="{{auth()->user()->id}}">
         <div id="articles-container" class="row"></div>
     </div>
 @endsection

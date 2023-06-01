@@ -24,11 +24,20 @@
                     </thead>
                     <tbody>
                     @isset($orders)
+
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $order->status }}</td>
-                                <td>{{ $order->create_At }}</td>
+                                <td>
+                                    @if ($order->status == 1)
+                                        Solicitado
+                                    @elseif ($order->status == 2)
+                                        Enviado
+                                    @elseif ($order->status == 3)
+                                        Recibido
+                                    @endif
+                                </td>
+                                <td>{{ $order->created_at }}</td>
                                 <td>
                                     <button type="button" class="btn btn-link text-danger btn-delete"><i
                                             class="fas fa-trash-alt"></i></button>
