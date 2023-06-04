@@ -8,7 +8,7 @@
 
     <main class="my-5 d-flex">
         <div class="container-fluid">
-            <div class="row text-center">
+            <div class="row">
                 <div class="col-12">
                     <table id="categoriesTable" class="table table-responsive table-hover">
                         <thead>

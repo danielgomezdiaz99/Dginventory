@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     <div class="container-fluid">
-        <div class="row text-center">
+        <div class="row">
             <div class="col-12">
                 <table id="articlesTable" class="table table-responsive table-hover">
                     <thead>
@@ -72,6 +72,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" type="application/javascript"></script>
     <script src="{{ asset('storage/js/articles.js') }}"></script>
 @endsection
