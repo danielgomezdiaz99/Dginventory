@@ -15,7 +15,7 @@ class Article extends Model
         'name',
         'stock',
         'subcategory_id',
-        'photo_path',
+        'image',
         'available',
         'visible',
         'status',
