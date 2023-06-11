@@ -32,9 +32,9 @@
                                     @if ($order->status == 1)
                                         Solicitado
                                     @elseif ($order->status == 2)
-                                        Enviado
+                                        Aceptado
                                     @elseif ($order->status == 3)
-                                        Recibido
+                                        Denegado
                                     @endif
                                 </td>
                                 <td>{{ $order->created_at }}</td>

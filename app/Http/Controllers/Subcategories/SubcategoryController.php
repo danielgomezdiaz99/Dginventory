@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Validator;
 class SubcategoryController extends Controller
 
 {
+    function __construct()
+    {
+        $this->middleware('permission:subcategory-list|subcategory-create|subcategory-edit|subcategory-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:subcategory-create', ['only' => ['create','store']]);
+        $this->middleware('permission:subcategory-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:subcategory-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $subcategories = Subcategory::all();

@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Create New Role</h2>
+                <h2>Crear nuevo rol</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back </a>
+                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Volver </a>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> Something went wrong.<br><br>
+            <strong>Whoops!</strong> Algo ha salido mal.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -29,12 +29,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                {!! Form::text('name', null, array('placeholder' => 'Nombre','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Permission:</strong>
+                <strong>Permisos:</strong>
                 <br/>
                 @foreach($permission as $value)
                     <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Crear</button>
         </div>
     </div>
     {!! Form::close() !!}

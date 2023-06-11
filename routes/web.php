@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 
@@ -69,6 +70,9 @@ Route::group(['prefix' => 'pedidos'], function(){
     Route::get('/', [\App\Http\Controllers\Orders\OrderController::class, 'index'])->name('orders.index');
     Route::get('/catalogo', [\App\Http\Controllers\Orders\OrderController::class, 'create'])->name('orders.create');
 });
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 //Route::middleware(['can:role-list'])->group(function () {
     Route::resource('roles', RoleController::class);
