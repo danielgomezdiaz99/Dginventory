@@ -17,9 +17,6 @@
                         <th data-column="create_at">
                             Fecha
                         </th>
-                        <th>
-                            Acciones
-                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,10 +35,6 @@
                                     @endif
                                 </td>
                                 <td>{{ $order->created_at }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-link text-danger btn-delete"><i
-                                            class="fas fa-trash-alt"></i></button>
-                                </td>
                             </tr>
                         @endforeach
                     @endisset
