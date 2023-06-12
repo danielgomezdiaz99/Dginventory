@@ -25,20 +25,16 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 Auth::routes();
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/', function () {
+    return view('auth.login');
+})->name('home');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-//
-//$this->middleware('permission:article-list|article-create|article-edit|article-delete', ['only' => ['index','show']]);
-//$this->middleware('permission:article-create', ['only' => ['create','store']]);
-//$this->middleware('permission:article-edit', ['only' => ['update']]);
-//$this->middleware('permission:article-delete', ['only' => ['destroy']]);
 
 Route::group(['prefix' => 'articulos'], function(){
     Route::get('/', [\App\Http\Controllers\Articles\ArticleController::class, 'index'])->name('articles.index');
